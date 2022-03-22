@@ -1,43 +1,52 @@
 #include "DyV.h"
 
-template <class T>
-class MergeSort : public DyV<T> {
- private:
- 
+using namespace std;
+
+template <class P, class S>
+class MergeSort : public DyV {
  public:
-  //MergeSort(): DyV(){}
-  bool Small(T data) {
-    return data.size() <= 0 ? 1 : 0; 
-  }
+  MergeSort(): DyV(){}
   ~MergeSort(){}
-  T SolveSmall(T data) {
-    return data;
+  S SolveSmall(P data) {
+    if (data.size() == 2) {
+      if (data[0] > data[1]) {
+        std::swap(data[0], data[1]);
+      }
+    }
+    Solution s(data.getVector());
+    return s;
   }
 
-  std::pair<T,T> Divide(T data, int l, int r) {
-    std::pair<T,T> division;
+  bool Small(P data) {
+    return data.size() <= 2 ? 1 : 0; 
+  }
+
+  std::vector<P> Divide(P data, int size) {
+    std::vector<P> division;
+    if (size > 2) {
     int i, j, k, nl, nr;
-    int m = l + (r -l) / 2;
-    nl = m - l + 1;
-    nr = r - m;
-    T larr(nl);
-    T rarr(nr);
+    int m = size / 2;
+    nl = m + 1;
+    nr = size - m;
+    P larr(nl);
+    P rarr(nr);
     for(i = 0; i < nl; i++) {
-      larr[i] = data[l + i];
+      larr[i] = data[i];
     }
     for(j = 0; j < nr; j++) {
       rarr[j] = data[m + 1 + j];
     }
-    division.first = larr;
-    division.second = rarr;
+    division.push_back(larr);
+    division.push_back(rarr);
+    }
     return division;
   }
 
-  T Combine(T data1, T data2) {
+  S Combine(S data1, S data2) {
     int i = 0; 
     int j = 0;
     int k = 0;
-    T result(data1.size() + data2.size());
+    S result(data1.size() + data2.size());
     while(i < data1.size() && j < data2.size()) {
       if (data1[i] <= data2[j]) {
         result[k] = data1[i];
@@ -55,15 +64,6 @@ class MergeSort : public DyV<T> {
     while (j < data2.size()) {
       result[k] = data2[j];
       j++;k++;
-    }
-    std::cout << "Size es : " << data1.size();
-    std::cout << "Left array tiene: " << std::endl;
-    for (int l = 0; l < data1.size(); l++) {
-      std::cout << data1[l];
-    }
-     std::cout << std::endl << "Right array tiene: " << std::endl;
-    for(int s = 0; s < data2.size(); s++) {
-      std::cout << data2[s];
     }
     return result;
   }
