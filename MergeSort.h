@@ -3,9 +3,9 @@
 using namespace std;
 
 template <class P, class S>
-class MergeSort : public DyV {
+class MergeSort : public DyV<P,S> {
  public:
-  MergeSort(): DyV(){}
+  MergeSort(): DyV<P,S>(){}
   ~MergeSort(){}
   S SolveSmall(P data) {
     if (data.size() == 2) {
@@ -13,7 +13,7 @@ class MergeSort : public DyV {
         std::swap(data[0], data[1]);
       }
     }
-    Solution s(data.getVector());
+    S s(data.getVector());
     return s;
   }
 

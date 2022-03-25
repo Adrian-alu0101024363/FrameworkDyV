@@ -2,11 +2,11 @@
 #define DYV
 #include <utility>
 #include <iostream>
-#include "Solution.h"
-#include "Problem.h"
+#include "Vector.h"
 
 using namespace std;
 
+template <typename Problem, class Solution>
 class DyV {
 
  public:
@@ -16,7 +16,6 @@ class DyV {
     if (Small(data)) {
       return SolveSmall(data);
     } else {
-      cout << "Ey";
       vector<Problem> problems = Divide(data, size);
       Solution S1 = Solve(problems[0], size /2);
       Solution S2 = Solve(problems[1], size /2);
