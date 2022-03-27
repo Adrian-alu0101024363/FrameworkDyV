@@ -28,7 +28,7 @@ public:
     int mid = (data.size()/2) - 1;
     auto piv = data[mid];
     while (i <= f) {
-      while (data[i] <= piv) i++;
+      while (data[i] < piv) i++;
       while (data[f] > piv) f--;
       if (i <= f) {
         auto x = data[i];
@@ -67,7 +67,7 @@ public:
     for (int j = i; j < size; j++) {
       result[j] = data2[k];
       k++;
-    }
+    } 
     return result;
   }
   

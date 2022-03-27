@@ -23,22 +23,24 @@ class MergeSort : public DyV<P,S> {
 
   std::vector<P> Divide(P data, int size) {
     std::vector<P> division;
-    if (size > 2) {
-    int i, j, k, nl, nr;
-    int m = size / 2;
+    int nl, nr;
+    int m = (data.size() / 2);
     nl = m + 1;
-    nr = size - m;
-    P larr(nl);
-    P rarr(nr);
-    for(i = 0; i < nl; i++) {
-      larr[i] = data[i];
+    nr = data.size() - m - 1;
+    P larr;
+    auto left = larr.getVector();
+    P rarr;
+    auto right = rarr.getVector();
+    for(int i = 0; i < nl; i++) {
+      left.push_back(data[i]);
     }
-    for(j = 0; j < nr; j++) {
-      rarr[j] = data[m + 1 + j];
+    for(int j = 0; j < nr; j++) {
+      right.push_back(data[m + j + 1]);
     }
+    rarr.setVector(right);
+    larr.setVector(left);
     division.push_back(larr);
     division.push_back(rarr);
-    }
     return division;
   }
 
@@ -46,6 +48,7 @@ class MergeSort : public DyV<P,S> {
     int i = 0; 
     int j = 0;
     int k = 0;
+
     S result(data1.size() + data2.size());
     while(i < data1.size() && j < data2.size()) {
       if (data1[i] <= data2[j]) {
