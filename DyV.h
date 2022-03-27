@@ -2,13 +2,13 @@
 #define DYV
 #include <utility>
 #include <iostream>
+#include <string>
 #include "Vector.h"
 
 using namespace std;
 
-template <typename Problem, class Solution>
+template <class Problem, class Solution>
 class DyV {
-
  public:
   DyV(){}
   virtual ~DyV(){}
@@ -23,7 +23,12 @@ class DyV {
       return S;
     }
   }
-
+  void info() {
+   cout << endl << "T(n) <= " << getA() << "T(n/" << getB() << ") + O(n^" << getC() << ")" << endl; 
+  }
+  virtual string getA() = 0;
+  virtual string getB() = 0;
+  virtual string getC() = 0;
   virtual bool Small(Problem data) = 0;
   virtual Solution SolveSmall(Problem data) = 0;
   virtual std::vector<Problem> Divide(Problem data, int size) = 0;

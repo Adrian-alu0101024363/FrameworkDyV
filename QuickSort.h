@@ -25,10 +25,10 @@ public:
     std::vector<P> division;
     int i = 0;
     int f = data.size() -1;
-    auto piv = data[(i + f + 1)/2];
-    std::cout << "Pivote " << piv << std::endl;
+    int mid = (data.size()/2) - 1;
+    auto piv = data[mid];
     while (i <= f) {
-      while (data[i] < piv) i++;
+      while (data[i] <= piv) i++;
       while (data[f] > piv) f--;
       if (i <= f) {
         auto x = data[i];
@@ -37,10 +37,6 @@ public:
         i++;
         f--;
       }
-    }
-    std::cout << "Data esta: " << std::endl;
-    for (int m = 0; m < data.size(); m++) {
-      std::cout << data[m] << " ";
     }
     int k;
     P larr;
@@ -55,14 +51,6 @@ public:
     }
     rarr.setVector(right);
     larr.setVector(left);
-    std::cout << "Right esta: " << std::endl;
-    for (int m = 0; m < rarr.size(); m++) {
-      std::cout << rarr[m] << " ";
-    }
-    std::cout << "Left esta: " << std::endl;
-    for (int m = 0; m < larr.size(); m++) {
-      std::cout << larr[m] << " ";
-    }
     division.push_back(larr);
     division.push_back(rarr);
     return division;
@@ -80,11 +68,10 @@ public:
       result[j] = data2[k];
       k++;
     }
-    std::cout << "Result size: " << result.size() << std::endl;
-    for (int i = 0; i < result.size(); i++) {
-      std::cout << result[i] << " ";
-    }
-    
     return result;
   }
+  
+  string getA() {return "2";}
+  string getB() {return "2";}
+  string getC() {return "1";}
 };

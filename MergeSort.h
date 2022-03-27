@@ -67,4 +67,7 @@ class MergeSort : public DyV<P,S> {
     }
     return result;
   }
+  string getA() {return "2";}
+  string getB() {return "2";}
+  string getC() {return "1";}
 };
