@@ -14,5 +14,6 @@ class Vector {
   int size() {return size_;}
   int& operator[](int index) {return p[index];}
   vector<int> getVector(){ return p;}
+  void setVector(vector<int> v) { p = v; size_ = v.size();} 
 };
 #endif
