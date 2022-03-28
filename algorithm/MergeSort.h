@@ -1,4 +1,4 @@
-#include "DyV.h"
+#include "../DyV.h"
 
 using namespace std;
 
@@ -7,6 +7,12 @@ class MergeSort : public DyV<P,S> {
  public:
   MergeSort(): DyV<P,S>(){}
   ~MergeSort(){}
+  /**
+   * @brief If the data was small (checked with Small) check if the bigger
+   * value is in the position 0 or 1 and swap if needed
+   * @param data the given problem 
+   * @return S the solution to the problem
+   */
   S SolveSmall(P data) {
     if (data.size() == 2) {
       if (data[0] > data[1]) {
@@ -17,10 +23,24 @@ class MergeSort : public DyV<P,S> {
     return s;
   }
 
+  /**
+   * @brief Check if we are searching a value in 
+   * a subvector of size 2 or less
+   * @param data the given problem 
+   * @return true 
+   * @return false 
+   */
   bool Small(P data) {
     return data.size() <= 2 ? 1 : 0; 
   }
 
+  /**
+   * @brief Divide the given problem in two subproblems 
+   * by half
+   * @param data the original problem
+   * @param size the size of the problem (no use)
+   * @return std::vector<P> the two subproblems
+   */
   std::vector<P> Divide(P data, int size) {
     std::vector<P> division;
     int nl, nr;
@@ -44,6 +64,12 @@ class MergeSort : public DyV<P,S> {
     return division;
   }
 
+  /**
+   * @brief Combine the subsolution sorting the elements
+   * @param data1 the first subsolution
+   * @param data2 the second subsolution
+   * @return S the sorted solution 
+   */
   S Combine(S data1, S data2) {
     int i = 0; 
     int j = 0;

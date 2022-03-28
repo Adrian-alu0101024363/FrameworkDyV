@@ -1,14 +1,19 @@
-#include "DyV.h"
+#include "../DyV.h"
 
 using namespace std;
 
 template <class P, class S>
 class Binary : public DyV<P,S> {
-private:
-bool founded_;
-public:
- Binary(): DyV<P,S>(){}
- ~Binary(){}
+
+  public:
+  Binary(): DyV<P,S>(){}
+  ~Binary(){}
+  /**
+   * @brief If the data was small (checked with Small) check if the value 
+   * is either on the first position or the second one
+   * @param data the given problem 
+   * @return S the solution to the problem
+   */
   S SolveSmall(P data) {
     S s(data.getVector());
     auto value = data.getValue();
@@ -24,10 +29,24 @@ public:
     return s;
   }
 
+  /**
+   * @brief Check if we are searching a value in 
+   * a subvector of size 2 or less
+   * @param data the given problem 
+   * @return true 
+   * @return false 
+   */
   bool Small(P data) {
     return data.size() <= 2 ? 1 : 0; 
   }
 
+   /**
+    * @brief Divide the given problem in two subproblems dependen 
+    *  on the value at the center of the array
+    * @param data the original problem
+    * @param size the size of the problem (no use)
+    * @return std::vector<P> the two subproblems
+    */
    std::vector<P> Divide(P data, int size) {
     std::vector<P> division;
     int mid = (data.size() / 2) - 1;
@@ -76,6 +95,13 @@ public:
     return division;
   }
 
+  /**
+   * @brief Combine the subsolution in one if the
+   * value is found then it's set in S as founded
+   * @param data1 the second subsolution
+   * @param data2 the second subsolution
+   * @return S the combined solution
+   */
   S Combine(S data1, S data2) {
     int size = data1.size() + data2.size();
     S result(size);

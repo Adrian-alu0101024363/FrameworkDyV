@@ -1,27 +1,15 @@
 MergeSort
-Time: 0.001000 Size: 42
+Time: 0.000000 Size: 2
 MergeSort
-Time: 0.000000 Size: 34
+Time: 0.000000 Size: 1
 MergeSort
-Time: 0.001000 Size: 94
+Time: 0.000000 Size: 5
 MergeSort
-Time: 0.000000 Size: 21
+Time: 0.000000 Size: 6
 MergeSort
-Time: 0.000000 Size: 22
+Time: 0.000000 Size: 8
 MergeSort
-Time: 0.000000 Size: 94
-Quick
-Time: 0.000000 Size: 42
-Quick
-Time: 0.000000 Size: 34
-Quick
-Time: 0.000000 Size: 94
-Quick
-Time: 0.001000 Size: 21
-Quick
-Time: 0.000000 Size: 22
-Quick
-Time: 0.000000 Size: 94
+Time: 0.001000 Size: 17
 Quick
 Time: 0.000000 Size: 2
 Quick
@@ -33,16 +21,4 @@ Time: 0.000000 Size: 6
 Quick
 Time: 0.000000 Size: 8
 Quick
-Time: 0.000000 Size: 17
-MergeSort
-Time: 0.000000 Size: 2
-MergeSort
-Time: 0.000000 Size: 1
-MergeSort
-Time: 0.000000 Size: 5
-MergeSort
-Time: 0.000000 Size: 6
-MergeSort
-Time: 0.000000 Size: 8
-MergeSort
 Time: 0.000000 Size: 17

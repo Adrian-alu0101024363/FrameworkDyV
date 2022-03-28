@@ -2,12 +2,12 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
-#include "MergeSort.h"
-#include "Vector.h"
-#include "Vectorf.h"
-#include "Vectorbinary.h"
-#include "QuickSort.h"
-#include "binary.h"
+#include "algorithm/MergeSort.h"
+#include "types/Vector.h"
+#include "types/Vectorf.h"
+#include "types/Vectorbinary.h"
+#include "algorithm/QuickSort.h"
+#include "algorithm/binary.h"
 #include <string>
 #include <ctime>
 #include "Timer.h"
@@ -15,9 +15,15 @@
 
 using namespace std;
 
-vector<vector<int>> generate() {
+/**
+ * @brief Return n random instances of vectors with random values
+ * 
+ * @param n how many instances
+ * @return vector<vector<int>> vector of random vectors
+ */
+vector<vector<int>> generate(int n) {
   vector<vector<int>> vec;
-  for (int i = 0; i < 6; i++) {
+  for (int i = 0; i < n; i++) {
     int random = 1 + (rand() % 20);
     std::vector<int> vec2(random);
     for (int j = 0; j < vec2.size();j++) {
@@ -29,12 +35,24 @@ vector<vector<int>> generate() {
   return vec;
 }
 
+/**
+ * @brief Print a given vector to console
+ * 
+ * @param v vector to be printed
+ */
 void print(vector<int> v) {
   for (int i = 0; i < v.size(); i++) {
     std::cout << v[i] << ',';
   }
 }
 
+/**
+ * @brief Print to a given file a given vector with a different header
+ * depending on m (1 for original, 2 for solution)
+ * @param v vector to be printed
+ * @param file file to print on
+ * @param m mode 
+ */
 void printToFile(vector<int> v, string file, int m) {
   ofstream f;
   f.open(file,std::ios_base::app);
@@ -50,6 +68,12 @@ void printToFile(vector<int> v, string file, int m) {
   }
 }
 
+/**
+ * @brief Given a vector of vectors solve each one with a quicksort using dyv
+ * 
+ * @param vectors vectors to be sorted
+ * @param mode 1 for debug mode
+ */
 void solveQuick(vector<vector<int>> vectors, int mode) {
   ofstream f;
   f.open("output.txt",std::ios_base::app);
@@ -80,6 +104,12 @@ void solveQuick(vector<vector<int>> vectors, int mode) {
   f.close();
 }
 
+/**
+ * @brief Given a vector of vectors solve each one with a merge using dyv
+ * 
+ * @param vectors vectors to be sorted
+ * @param mode 1 for debug mode
+ */
 void solveMerge(vector<vector<int>> vectors, int mode) {
   ofstream f;
   f.open("output.txt",std::ios_base::app);
@@ -108,6 +138,12 @@ void solveMerge(vector<vector<int>> vectors, int mode) {
   f.close();
 }
 
+/**
+ * @brief Given a vector of vectors solve each one with a binary search using dyv
+ * 
+ * @param vectors vectors to be sorted
+ * @param mode 1 for debug mode
+ */
 void solveBinary(vector<vector<int>> vectors, int mode) {
   for (vector<int> v : vectors) {
     sort(v.begin(),v.end());
@@ -127,15 +163,19 @@ void solveBinary(vector<vector<int>> vectors, int mode) {
   }
 }
 
+// If the action given is 2 print to file a comparision of quick and merge sort
+// If the action is 1 ask for the algorithm to execute and print the debug
+// If the action is neither 1 or 2 print only the times of execution
 int main(int argc,char* argv[]) {
   string action;
   int choice = 0;
+  int n = 6;
   action = argv[1];
   if (argc == 2) {
     if (action == "2") {
       ofstream f;
       f.open("output.txt");
-      vector<vector<int>> v = generate();
+      vector<vector<int>> v = generate(n);
       cout << "Merge sort:" << endl;
       solveMerge(v,1);
       cout << "Quick sort: " << endl;
@@ -145,11 +185,11 @@ int main(int argc,char* argv[]) {
       cout << endl << "Choose Algorithm: 1-Merge 2-Quick 3-Binary" << endl;
       cin >> choice;
       if (choice == 1) {
-        solveMerge(generate(),stoi(action));
+        solveMerge(generate(n),stoi(action));
       } else if (choice == 2) {
-        solveQuick(generate(),stoi(action));
+        solveQuick(generate(n),stoi(action));
       } else if (choice == 3) {
-        solveBinary(generate(),stoi(action));
+        solveBinary(generate(n),stoi(action));
       } else {
         cout << "Incorrect option";
       }
